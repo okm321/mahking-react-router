@@ -1,0 +1,62 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+:root {
+  --space_base: 4px;
+  --color_text-default: #{v.$gray-900};
+  --color_bg-default: #{v.$mint-500};
+  --color_bg-main-wrapper: #{v.$yellow-200};
+  --color_bg-main: #{v.$yellow-50};
+}
+
+.zen-kaku-gothic-new-medium {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.zen-kaku-gothic-new-bold {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  // -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  height: 100%;
+  background: var(--color_bg-default);
+  color: var(--color_text-default);
+  transition: background 0.3s;
+  @include m.text-style(m);
+  font-family: "Zen Kaku Gothic New", sans-serif;
+}
+
+*:focus-visible {
+  /* outline-color: var(--color_outline); */
+  outline-width: 2px;
+  outline-style: auto;
+  outline-offset: 0.5rem;
+}
+
+.visually-hidden {
+  width: 0.0625rem;
+  height: 0.0625rem;
+  margin: -0.0625rem;
+  padding: 0px;
+  position: absolute;
+  top: 0px;
+  inset-inline-start: 0px;
+  overflow: hidden;
+  clip: rect(0px, 0px, 0px, 0px);
+  border: 0px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
