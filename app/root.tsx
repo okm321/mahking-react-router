@@ -8,7 +8,9 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
-import "./app.css";
+import "./app.scss";
+import { Header } from "./components/Header";
+import { Main } from "./components/Main";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -19,13 +21,13 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Paytone+One&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap",
   },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ja">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,7 +35,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <Header />
+        <Main>
+          {children}
+        </Main>
         <ScrollRestoration />
         <Scripts />
       </body>
