@@ -1,0 +1,1 @@
+export { NewView } from './NewView'

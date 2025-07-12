@@ -3,10 +3,12 @@
 
 :root {
   --space_base: 4px;
+  --color_primary: #{v.$mint-500};
   --color_text-default: #{v.$gray-900};
   --color_bg-default: #{v.$mint-500};
   --color_bg-main-wrapper: #{v.$yellow-200};
   --color_bg-main: #{v.$yellow-50};
+  --color_input-outline: #{v.$green-800};
 }
 
 .zen-kaku-gothic-new-medium {
@@ -36,10 +38,8 @@ html {
 }
 
 *:focus-visible {
-  /* outline-color: var(--color_outline); */
-  outline-width: 2px;
-  outline-style: auto;
-  outline-offset: 0.5rem;
+  outline: 2px solid var(--color_input-outline);
+  outline-offset: 4px;
 }
 
 .visually-hidden {

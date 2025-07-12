@@ -1,7 +1,7 @@
-import { HomePage } from "~/pages/HomePage";
+import { HomeView } from "~/views/HomeView";
 import type { Route } from "./+types/_index";
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ }: Route.MetaArgs) {
   return [
     { title: "Mahking | 麻雀の対局記録アプリ" },
     { name: "description", content: "Welcome to React Router!" },
@@ -9,5 +9,5 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Component() {
-  return <HomePage />;
+  return <HomeView />;
 }
