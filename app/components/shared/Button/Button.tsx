@@ -35,7 +35,7 @@ export function Button<T extends ElementType = 'button'>({
   ...props
 }: ButtonProps<T>) {
   const Component = as || 'button'
-  
+
   return (
     <Component
       className={clsx(
@@ -45,7 +45,7 @@ export function Button<T extends ElementType = 'button'>({
         styles[`button--${color}`],
         disabled && styles['button--disabled'],
         bold && styles['button--bold'],
-        className
+        className,
       )}
       disabled={Component === 'button' ? disabled : undefined}
       aria-disabled={disabled}

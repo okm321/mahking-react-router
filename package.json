@@ -12,10 +12,14 @@
     "@react-router/fs-routes": "^7.6.3",
     "@react-router/node": "^7.5.3",
     "@react-router/serve": "^7.5.3",
+    "@tanstack/react-form": "^1.14.1",
+    "clsx": "^2.1.1",
     "isbot": "^5.1.27",
+    "lucide-react": "^0.525.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router": "^7.5.3"
+    "react-router": "^7.5.3",
+    "zod": "^4.0.5"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.6",

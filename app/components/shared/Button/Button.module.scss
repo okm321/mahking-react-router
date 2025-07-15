@@ -2,7 +2,7 @@
 @use "../../../styles/variables" as v;
 
 .button {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   border: none;
@@ -73,7 +73,6 @@
     border-color: var(--color_primary);
 
     @media (hover: hover) {
-
       &:hover:not(:disabled):not(.button--disabled) {
         background-color: var(--color_primary);
         color: white;
@@ -124,12 +123,32 @@
   font-weight: 700;
 }
 
-.button--disabled {
-  background-color: v.$gray-200 !important;
-  color: v.$gray-500 !important;
-  border-color: v.$gray-200 !important;
+// 詳細度を上げたdisabledスタイル
+.button.button--disabled {
   cursor: not-allowed;
   pointer-events: none;
+}
+
+// 各variantとの組み合わせで詳細度をさらに上げる
+.button--contained.button--primary.button--disabled,
+.button--contained.button--error.button--disabled {
+  background-color: v.$gray-300;
+  color: v.$gray-500;
+  border-color: v.$gray-200;
+}
+
+.button--outline.button--primary.button--disabled,
+.button--outline.button--error.button--disabled {
+  background-color: v.$gray-300;
+  color: v.$gray-500;
+  border-color: v.$gray-200;
+}
+
+.button--text.button--primary.button--disabled,
+.button--text.button--error.button--disabled {
+  background-color: v.$gray-300;
+  color: v.$gray-500;
+  border-color: v.$gray-200;
 }
 
 .button__startIcon {

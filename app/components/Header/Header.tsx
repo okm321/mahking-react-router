@@ -1,11 +1,12 @@
+import { Link } from 'react-router'
 import styles from './Header.module.scss'
 
 export function Header() {
   return (
     <header className={styles.header}>
-      <a href="/" className={styles.header__title}>
-        <h1>Mahking</h1>
-      </a>
+      <h1 className={styles.header__title}>
+        <Link to="/">Mahking</Link>
+      </h1>
     </header>
   )
 }

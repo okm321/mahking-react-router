@@ -5,6 +5,10 @@ import type { AriaAttributes } from "react"
 type InputTextProps = {
   /** id */
   id?: string
+  /** 値 */
+  value: string
+  /** 値変更時のコールバック */
+  onChangeValue: (value: string) => void
   /** サイズ */
   size?: 'small' | 'medium'
   /** 非活性か */
@@ -17,6 +21,8 @@ type InputTextProps = {
 
 export function InputText({
   id,
+  value,
+  onChangeValue,
   size = 'medium',
   disabled,
   placeholder,
@@ -24,20 +30,20 @@ export function InputText({
   "aria-describedby": ariaDescribedBy
 }: InputTextProps) {
   return (
-    <>
-      <input
-        id={id}
-        disabled={disabled}
-        placeholder={placeholder}
-        aria-invalid={error}
-        aria-describedby={ariaDescribedBy}
-        className={clsx(
-          styles.input_text,
-          size === 'medium' && styles.input_text__medium,
-          error && styles['input_text-error'],
-          disabled && styles['input_text-disabled']
-        )}
-      />
-    </>
+    <input
+      id={id}
+      value={value}
+      onChange={(e) => onChangeValue(e.target.value)}
+      disabled={disabled}
+      placeholder={placeholder}
+      aria-invalid={error}
+      aria-describedby={ariaDescribedBy}
+      className={clsx(
+        styles.input_text,
+        size === 'medium' && styles.input_text__medium,
+        error && styles['input_text-error'],
+        disabled && styles['input_text-disabled']
+      )}
+    />
   )
 }
