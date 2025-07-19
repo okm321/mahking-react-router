@@ -15,6 +15,8 @@ interface BaseButtonProps {
   className?: string
   startIcon?: ReactNode
   endIcon?: ReactNode
+  loading?: boolean
+  loadingText?: string
 }
 
 type ButtonProps<T extends ElementType = 'button'> = BaseButtonProps & {
@@ -32,6 +34,8 @@ export function Button<T extends ElementType = 'button'>({
   endIcon,
   children,
   as,
+  loading,
+  loadingText,
   ...props
 }: ButtonProps<T>) {
   const Component = as || 'button'
@@ -45,15 +49,24 @@ export function Button<T extends ElementType = 'button'>({
         styles[`button--${color}`],
         disabled && styles['button--disabled'],
         bold && styles['button--bold'],
+        loading && styles['button--loading'],
         className,
       )}
       disabled={Component === 'button' ? disabled : undefined}
       aria-disabled={disabled}
       {...props}
     >
-      {startIcon && <span className={styles.button__startIcon}>{startIcon}</span>}
-      {children}
-      {endIcon && <span className={styles.button__endIcon}>{endIcon}</span>}
+      <span className={clsx(styles.button__content, loading && styles['button__content--hidden'])}>
+        {startIcon && <span className={styles.button__startIcon}>{startIcon}</span>}
+        {children}
+        {endIcon && <span className={styles.button__endIcon}>{endIcon}</span>}
+      </span>
+      {loading && (
+        <span className={styles.button__loader}>
+          <img src="/pinzu1-white.svg" alt="Loading" className={styles['button__loader--spin']} />
+          {loadingText && <span className={styles.button__loadingText}>{loadingText}</span>}
+        </span>
+      )}
     </Component>
   )
 }

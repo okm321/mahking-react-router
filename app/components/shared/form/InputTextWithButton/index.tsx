@@ -1,1 +1,1 @@
-export { InputTextWithButton } from './InputTextWithButton'
+export { InputAddToList } from './InputAddToList'

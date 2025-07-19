@@ -8,11 +8,17 @@ export const basicInfoFormSchema = z.object({
     message: "メンツは3人以上登録してください"
   }).max(10, {
     message: "メンツは最大10人まで登録できます"
-  }).refine((names) => {
-    const uniqueNames = new Set(names);
-    return uniqueNames.size === names.length;
-  }, {
-    message: "この名前はすでに登録されています"
+  }).check((ctx) => {
+    const uniqueNames = ctx.value.filter((name, i, self) => {
+      return self.indexOf(name) === i && i !== self.lastIndexOf(name)
+    })
+    if (uniqueNames.length > 0) {
+      ctx.issues.push({
+        code: "custom",
+        message: `同じ名前は登録できません: ${Array.from(uniqueNames).join(", ")}`,
+        input: ctx.value,
+      })
+    }
   })
 })
 

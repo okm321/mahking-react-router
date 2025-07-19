@@ -23,6 +23,11 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Paytone+One&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap",
   },
+  {
+    rel: "preload",
+    href: "/pinzu1-white.svg",
+    as: "image",
+  },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {

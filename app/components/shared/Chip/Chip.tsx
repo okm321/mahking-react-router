@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import styles from './Chip.module.scss';
 import { CircleX } from 'lucide-react'
 import type { AriaAttributes, ElementType } from 'react'
@@ -7,6 +8,8 @@ type ChipProps<T extends ElementType = 'div'> = {
   as?: T;
   /** テキスト */
   text: string;
+  /** 色 */
+  color?: 'default' | 'red'
   /** 削除イベント */
   onDelete?: () => void
 } & AriaAttributes
@@ -14,6 +17,7 @@ type ChipProps<T extends ElementType = 'div'> = {
 export function Chip<T extends ElementType = 'div'>({
   as,
   text,
+  color = 'default',
   onDelete,
   'aria-label': ariaLabel,
   'aria-describedby': ariaDescribedBy
@@ -24,7 +28,10 @@ export function Chip<T extends ElementType = 'div'>({
 
   return (
     <Component
-      className={styles.chip}
+      className={clsx(
+        styles.chip,
+        color === 'red' && styles['chip-red']
+      )}
       role="group"
       aria-label={chipLabel}
       aria-describedby={ariaDescribedBy}

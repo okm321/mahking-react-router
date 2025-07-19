@@ -2,6 +2,7 @@
 @use "../../../styles/variables" as v;
 
 .button {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,6 +124,11 @@
   font-weight: 700;
 }
 
+.button--loading {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
 // 詳細度を上げたdisabledスタイル
 .button.button--disabled {
   cursor: not-allowed;
@@ -159,4 +165,40 @@
 .button__endIcon {
   display: inline-flex;
   margin-left: #{m.space(2)};
+}
+
+.button__content {
+  display: inline-flex;
+  align-items: center;
+
+  &--hidden {
+    visibility: hidden;
+  }
+}
+
+.button__loader {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &--spin {
+    animation: spin 1s linear infinite;
+    width: 1.2em;
+    height: 1.2em;
+  }
+}
+
+.button__loadingText {
+  margin-left: #{m.space(2)};
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }

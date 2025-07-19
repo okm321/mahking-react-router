@@ -39,6 +39,10 @@
       box-shadow: 0 0 8px 0px v.$red-300;
       border-color: v.$red-500;
     }
+
+    .button-disabled {
+      border-color: v.$red-500;
+    }
   }
 
   &-disabled {
@@ -82,5 +86,13 @@
     box-sizing: border-box;
     border-left: none;
     pointer-events: none;
+
   }
+}
+
+.list {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }

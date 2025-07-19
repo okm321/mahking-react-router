@@ -28,6 +28,25 @@
     box-shadow: 0 0 8px 0px v.$green-200;
   }
 
+  &-red {
+    background-color: v.$red-50;
+    border-color: v.$red-500;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: v.$red-100;
+        border-color: v.$red-800;
+        box-shadow: 0 0 8px 0px v.$red-200;
+      }
+    }
+
+    &:has(.close_button:focus-visible) {
+      background-color: v.$red-100;
+      border-color: v.$red-800;
+      outline: none;
+      box-shadow: 0 0 8px 0px v.$red-200;
+    }
+  }
 }
 
 .text {
