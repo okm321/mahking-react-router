@@ -25,4 +25,5 @@
   flex: 1 1 auto;
   height: 100%;
   border-radius: 0 calc(var(--space_base) * 4) calc(var(--space_base) * 4) calc(var(--space_base) * 4);
+  overflow-y: auto;
 }

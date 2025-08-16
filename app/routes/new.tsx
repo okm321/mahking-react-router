@@ -1,4 +1,4 @@
-import { NewView } from "~/views/NewView";
+import { GroupCreateView } from "~/views/GroupCreateView";
 import type { Route } from "./+types/new";
 
 export function meta({ }: Route.MetaArgs) {
@@ -9,5 +9,5 @@ export function meta({ }: Route.MetaArgs) {
 }
 
 export default function Component() {
-  return <NewView />
+  return <GroupCreateView />
 }

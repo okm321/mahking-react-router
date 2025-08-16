@@ -1,6 +1,7 @@
 import z from "zod";
+import { MahjongType } from "~/constants/mahjongType";
 
-export const basicInfoFormSchema = z.object({
+export const groupCreateFormSchema = z.object({
   groupName: z.string().max(50, {
     message: "50文字以内で入力してください"
   }),
@@ -19,7 +20,8 @@ export const basicInfoFormSchema = z.object({
         input: ctx.value,
       })
     }
-  })
+  }),
+  mahjongType: z.enum(MahjongType)
 })
 
-export type BasicInfoFormType = z.infer<typeof basicInfoFormSchema>;
+export type GroupCreateFormType = z.infer<typeof groupCreateFormSchema>;

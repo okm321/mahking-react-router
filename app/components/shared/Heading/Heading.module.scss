@@ -9,12 +9,12 @@
 }
 
 h2.heading {
-  @include m.text-style(xxl);
+  @include m.text-style(xl);
   padding-top: 4px;
   padding-bottom: 4px;
-  padding-left: 48px;
+  padding-left: 40px;
   margin-bottom: 16px;
   border-bottom: 4px solid v.$green-600;
 
-  background-size: 36px;
+  background-size: 32px;
 }
