@@ -2,8 +2,9 @@
 @use '../../styles/mixins' as m;
 
 .main_wrapper {
-  margin: calc(var(--space_base) * 2);
-  margin-top: 0;
+  width: 95%;
+  max-width: 500px;
+  margin: 0 auto calc(var(--space_base) * 2);
   background: var(--color_bg-main-wrapper);
   flex: 1 1 auto;
   border-radius: calc(var(--space_base) * 4);
