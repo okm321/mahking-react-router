@@ -7,13 +7,21 @@ import { Button } from "../shared/Button"
 import styles from "./GroupCreateForm.module.scss"
 import { GroupRuleForm } from "./GroupRuleForm";
 import { GroupCreateFormDefaultValues } from "./formValues";
+import { revalidateLogic } from "@tanstack/react-form";
 
 export function GroupCreateForm() {
   const form = useAppForm({
     defaultValues: GroupCreateFormDefaultValues,
     validators: {
-      onSubmit: groupCreateFormSchema,
+      // onSubmit: groupCreateFormSchema,
+      // onChangeAsync: groupCreateFormSchema,
+      // onChangeAsyncDebounceMs: 500,
+      onDynamic: groupCreateFormSchema,
     },
+    validationLogic: revalidateLogic({
+      mode: 'submit',
+      modeAfterSubmission: 'change',
+    }),
     onSubmit: async ({ value }) => {
       console.log("グループ作成リクエスト:", value)
       await new Promise((resolve) => setTimeout(resolve, 2000)) // Simulate API call
@@ -25,7 +33,7 @@ export function GroupCreateForm() {
       e.preventDefault()
       e.stopPropagation()
       form.handleSubmit()
-    }}>
+    }} className={styles.group_create_form}>
       <Stack spacing={8}>
         <GroupBasicSettingForm form={form} />
         <GroupRuleForm form={form} />

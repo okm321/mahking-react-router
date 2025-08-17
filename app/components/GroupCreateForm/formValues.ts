@@ -1,5 +1,19 @@
 import { MahjongType } from "~/constants/mahjongType"
 
+export type RankingPointFields = {
+  first: number | null
+  second: number | null
+  third: number | null
+  fourth: number | null
+}
+
+export const RankingPointFieldsDefaultValues: RankingPointFields = {
+  first: 20,
+  second: 10,
+  third: -10,
+  fourth: -20
+}
+
 export type GroupCreateFormValues = {
   /** グループ名 */
   groupName: string
@@ -11,6 +25,8 @@ export type GroupCreateFormValues = {
   initialPoints: number | null
   /** 返し点 */
   returnPoints: number | null
+  /** ウマ */
+  rankingPoints: RankingPointFields
 }
 
 export const GroupCreateFormDefaultValues: GroupCreateFormValues = {
@@ -18,6 +34,6 @@ export const GroupCreateFormDefaultValues: GroupCreateFormValues = {
   memberNames: [],
   mahjongType: MahjongType.THREE_PLAYER,
   initialPoints: 35,
-  returnPoints: 50
+  returnPoints: 50,
+  rankingPoints: RankingPointFieldsDefaultValues
 }
-

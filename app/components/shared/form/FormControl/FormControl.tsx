@@ -8,6 +8,8 @@ type FormControlProps = {
   label: string
   /** 必須か */
   required?: boolean
+  /** 必須ラベルを隠すか */
+  hiddenRequiredLabel?: boolean
   /** ヘルパーテキスト */
   helperText?: string
   /** エラーメッセージ */
@@ -25,6 +27,7 @@ type FormControlProps = {
 
 export function FormControl({
   label,
+  hiddenRequiredLabel,
   helperText,
   required,
   errorMessage,
@@ -43,7 +46,7 @@ export function FormControl({
 
   return (
     <Stack spacing={1} className={className}>
-      <Label required={required} htmlFor={labelId}>{label}</Label>
+      <Label required={required} htmlFor={labelId} hiddenChip={hiddenRequiredLabel}>{label}</Label>
       {!!helperText && (
         <span id={helpId} className={styles.helper_text}>
           {helperText}

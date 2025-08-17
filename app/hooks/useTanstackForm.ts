@@ -15,7 +15,7 @@ const fieldComponents = {
 }; // フィールドコンポーネントをここに定義する（例: { TextField, SelectField }）
 const formComponents = {}; // フォームコンポーネントをここに定義する（例: { SubmitButton }）
 
-export const { useAppForm, withForm } = createFormHook({
+export const { useAppForm, withForm, withFieldGroup } = createFormHook({
   fieldComponents,
   formComponents,
   fieldContext,

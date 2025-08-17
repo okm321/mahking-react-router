@@ -11,6 +11,7 @@ type InputAddToListProp = {
   name?: string
   /** value */
   values: string[]
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
   /** 値変更時 */
   onChangeValues: (value: string[]) => void
   /** 値が正しいか */
@@ -35,6 +36,7 @@ export function InputAddToList({
   id,
   name,
   values,
+  onBlur,
   onChangeValues,
   onCheckValidValue,
   size = 'medium',
@@ -96,6 +98,7 @@ export function InputAddToList({
           className={styles.input_text}
           placeholder={placeholder}
           disabled={disabled}
+          onBlur={onBlur}
           value={inputValue}
           onChange={(event) => setInputValue(event.target.value)}
           onKeyDown={handleKeyDown}

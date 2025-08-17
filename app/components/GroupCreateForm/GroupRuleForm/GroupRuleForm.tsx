@@ -7,17 +7,26 @@ import { InputRadioGroup } from "~/components/shared/form/InputRadioGroup";
 import { createMahjongTypeOptions, } from "~/constants/mahjongType";
 import { GroupCreateFormDefaultValues } from "../formValues";
 import { useMemo } from "react";
-import { useStore } from "@tanstack/react-form";
+import { revalidateLogic, useStore } from "@tanstack/react-form";
 import { InputNumber } from "~/components/shared/form/InputNumber";
 import styles from "./GroupRuleForm.module.scss";
+import { FieldGroupRankingPointFields } from "~/components/FieldGroupRankingPointFields";
 
 export const GroupRuleForm = withForm({
   defaultValues: GroupCreateFormDefaultValues,
   validators: {
-    onSubmit: groupCreateFormSchema,
+    // onSubmit: groupCreateFormSchema,
+    // onChangeAsync: groupCreateFormSchema,
+    // onChangeAsyncDebounceMs: 500,
+    onDynamic: groupCreateFormSchema,
   },
+  validationLogic: revalidateLogic({
+    mode: 'submit',
+    modeAfterSubmission: 'change',
+  }),
   render: function Render({ form }) {
     const playerNames = useStore(form.store, (state) => state.values.memberNames)
+    const mahjongType = useStore(form.store, (state) => state.values.mahjongType);
     const overFourPlayers = useMemo(() => {
       return playerNames.length >= 4
     }, [playerNames.length]);
@@ -112,6 +121,23 @@ export const GroupRuleForm = withForm({
               }}
             />
           </div>
+          <form.Field
+            name="rankingPoints"
+            children={(field) => {
+              const { meta: { errors } } = field.state;
+              return (
+                <FormControl
+                  label="ウマの設定"
+                  required
+                  errorMessage={errors[0]?.message}
+                >
+                  {({ labelId, error }) => (
+                    <FieldGroupRankingPointFields form={form} fields="rankingPoints" mahjongType={mahjongType} />
+                  )}
+                </FormControl>
+              )
+            }}
+          />
         </Stack>
       </section>
     )

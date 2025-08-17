@@ -6,12 +6,17 @@ import { withForm } from "~/hooks/useTanstackForm";
 import { groupCreateFormSchema } from "~/schema/groupCreateFormSchema";
 import { InputAddToList } from "../../shared/form/InputTextWithButton";
 import { GroupCreateFormDefaultValues } from "../formValues";
+import { revalidateLogic } from "@tanstack/react-form";
 
 export const GroupBasicSettingForm = withForm({
   defaultValues: GroupCreateFormDefaultValues,
   validators: {
-    onSubmit: groupCreateFormSchema,
+    onDynamic: groupCreateFormSchema,
   },
+  validationLogic: revalidateLogic({
+    mode: 'submit',
+    modeAfterSubmission: 'change',
+  }),
   render: function Render({ form }) {
     return (
       <section>
@@ -58,6 +63,7 @@ export const GroupBasicSettingForm = withForm({
                     <InputAddToList
                       values={value}
                       name={field.name}
+                      onBlur={field.handleBlur}
                       size='medium'
                       placeholder="雀太郎"
                       error={!!errors?.length || error}

@@ -9,6 +9,14 @@ const pointsSchema = z.number({
   message: "50以下の値を入力してください"
 })
 
+const rankingPointSchema = z.number({
+  message: "半角数字を入力してください"
+}).int().min(-500, {
+  message: "500以下の値を入力してください"
+}).max(500, {
+  message: "500以上の値を入力してください"
+})
+
 export const groupCreateFormSchema = z.object({
   groupName: z.string().max(50, {
     message: "50文字以内で入力してください"
@@ -32,6 +40,12 @@ export const groupCreateFormSchema = z.object({
   mahjongType: z.enum(MahjongType),
   initialPoints: pointsSchema,
   returnPoints: pointsSchema,
+  rankingPoints: z.object({
+    first: rankingPointSchema,
+    second: rankingPointSchema,
+    third: rankingPointSchema,
+    fourth: z.number().int().nullable()
+  })
 }).refine((data) => {
   if (data.memberNames.length < 4 && data.mahjongType === MahjongType.FOUR_PLAYER) {
     return false;
@@ -52,7 +66,32 @@ export const groupCreateFormSchema = z.object({
 }, {
   message: "返し点は持ち点以上にしてください",
   path: ["returnPoints"],
+}).refine(({ mahjongType, rankingPoints }) => {
+  if (mahjongType === MahjongType.FOUR_PLAYER && rankingPoints.fourth == null) {
+    return false;
+  }
+  return true
+}, {
+  message: "半角数字を入力してください",
+  path: ["rankingPoints.fourth"]
 })
+  .refine(({ mahjongType, rankingPoints }) => {
+    if (mahjongType === MahjongType.THREE_PLAYER) {
+      const sum = rankingPoints.first + rankingPoints.second + rankingPoints.third;
+      if (sum !== 0) {
+        return false;
+      }
+      return true;
+    }
+    const sum = rankingPoints.first + rankingPoints.second + rankingPoints.third + (rankingPoints.fourth ?? 0);
+    if (sum !== 0) {
+      return false;
+    }
+    return true
+  }, {
+    message: "ウマの合計は0にしてください",
+    path: ["rankingPoints"],
+  })
 
 export type GroupCreateFormType = z.infer<typeof groupCreateFormSchema>;
 

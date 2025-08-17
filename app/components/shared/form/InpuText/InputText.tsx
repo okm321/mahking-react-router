@@ -9,6 +9,7 @@ type InputTextProps = {
   name?: string
   /** 値 */
   value: string
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
   /** 値変更時のコールバック */
   onChangeValue: (value: string) => void
   /** サイズ */
@@ -25,6 +26,7 @@ export function InputText({
   id,
   name,
   value,
+  onBlur,
   onChangeValue,
   size = 'medium',
   disabled,
@@ -37,6 +39,7 @@ export function InputText({
       id={id}
       name={name}
       value={value}
+      onBlur={onBlur}
       onChange={(e) => onChangeValue(e.target.value)}
       disabled={disabled}
       placeholder={placeholder}

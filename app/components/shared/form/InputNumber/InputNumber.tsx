@@ -10,6 +10,7 @@ type InputNumberProps = {
   name?: string
   /** 値 */
   value: number | null
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
   /** 値変更のコールバック */
   onChangeValue: (value: number | null) => void
   /** サイズ */
@@ -30,6 +31,7 @@ export function InputNumber({
   id,
   name,
   value,
+  onBlur,
   onChangeValue,
   size = 'medium',
   disabled,
@@ -52,8 +54,8 @@ export function InputNumber({
       return { value: null, displayValue: '' }
     }
 
-    // 整数のみを許可（小数点や他の文字を含む場合は無効とする）
-    if (!/^\d+$/.test(converted)) {
+    // 整数のみを許可（マイナス記号と数値のみ）
+    if (!/^-?\d+$/.test(converted)) {
       // 無効な値の場合は空文字列を表示値として返す
       return { value: null, displayValue: '' }
     }
@@ -85,7 +87,10 @@ export function InputNumber({
         name={name}
         value={localValue}
         onChange={handleChange}
-        onBlur={handleBlur}
+        onBlur={(e) => {
+          handleBlur()
+          onBlur?.(e)
+        }}
         inputMode={inputMode}
         disabled={disabled}
         placeholder={placeholder}
