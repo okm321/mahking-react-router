@@ -5,6 +5,8 @@ import type { AriaAttributes } from "react"
 type InputTextProps = {
   /** id */
   id?: string
+  /** name */
+  name?: string
   /** 値 */
   value: string
   /** 値変更時のコールバック */
@@ -21,6 +23,7 @@ type InputTextProps = {
 
 export function InputText({
   id,
+  name,
   value,
   onChangeValue,
   size = 'medium',
@@ -32,6 +35,7 @@ export function InputText({
   return (
     <input
       id={id}
+      name={name}
       value={value}
       onChange={(e) => onChangeValue(e.target.value)}
       disabled={disabled}

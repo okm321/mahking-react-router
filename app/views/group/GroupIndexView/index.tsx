@@ -1,1 +1,0 @@
-export { GroupIndexView } from "./GroupIndexView"

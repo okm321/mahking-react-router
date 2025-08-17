@@ -20,6 +20,7 @@ type FormControlProps = {
     /** aria-describedby */
     ariaDescribedBy?: string
   }) => ReactNode
+  className?: string
 }
 
 export function FormControl({
@@ -28,6 +29,7 @@ export function FormControl({
   required,
   errorMessage,
   children,
+  className
 }: FormControlProps) {
   const labelId = useId()
   const helpId = useId()
@@ -40,7 +42,7 @@ export function FormControl({
 
 
   return (
-    <Stack spacing={1}>
+    <Stack spacing={1} className={className}>
       <Label required={required} htmlFor={labelId}>{label}</Label>
       {!!helperText && (
         <span id={helpId} className={styles.helper_text}>

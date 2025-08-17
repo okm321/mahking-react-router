@@ -1,6 +1,14 @@
 import z from "zod";
 import { MahjongType } from "~/constants/mahjongType";
 
+const pointsSchema = z.number({
+  message: "半角数字を入力してください"
+}).int().min(10, {
+  message: "10以上の値を入力してください"
+}).max(50, {
+  message: "50以下の値を入力してください"
+})
+
 export const groupCreateFormSchema = z.object({
   groupName: z.string().max(50, {
     message: "50文字以内で入力してください"
@@ -21,7 +29,30 @@ export const groupCreateFormSchema = z.object({
       })
     }
   }),
-  mahjongType: z.enum(MahjongType)
+  mahjongType: z.enum(MahjongType),
+  initialPoints: pointsSchema,
+  returnPoints: pointsSchema,
+}).refine((data) => {
+  if (data.memberNames.length < 4 && data.mahjongType === MahjongType.FOUR_PLAYER) {
+    return false;
+  }
+  return true;
+}, {
+  message: "4人未満のメンツでは四人打ちを選択できません",
+  path: ["mahjongType"],
+}).refine(({ initialPoints, returnPoints }) => {
+  if (initialPoints == null || returnPoints == null) {
+    return true;
+  }
+  if (initialPoints > returnPoints) {
+    return false;
+  }
+
+  return true
+}, {
+  message: "返し点は持ち点以上にしてください",
+  path: ["returnPoints"],
 })
 
 export type GroupCreateFormType = z.infer<typeof groupCreateFormSchema>;
+

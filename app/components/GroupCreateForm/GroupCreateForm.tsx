@@ -6,22 +6,7 @@ import { GroupBasicSettingForm } from "./GroupBasicSettingForm"
 import { Button } from "../shared/Button"
 import styles from "./GroupCreateForm.module.scss"
 import { GroupRuleForm } from "./GroupRuleForm";
-import { MahjongType } from "~/constants/mahjongType";
-
-export type GroupCreateFormValues = {
-  /** グループ名 */
-  groupName: string
-  /** メンバー名 */
-  memberNames: string[]
-  /** 麻雀の種類 */
-  mahjongType: MahjongType
-}
-
-export const GroupCreateFormDefaultValues: GroupCreateFormValues = {
-  groupName: '',
-  memberNames: [],
-  mahjongType: MahjongType.FOUR_PLAYER,
-}
+import { GroupCreateFormDefaultValues } from "./formValues";
 
 export function GroupCreateForm() {
   const form = useAppForm({
@@ -30,6 +15,7 @@ export function GroupCreateForm() {
       onSubmit: groupCreateFormSchema,
     },
     onSubmit: async ({ value }) => {
+      console.log("グループ作成リクエスト:", value)
       await new Promise((resolve) => setTimeout(resolve, 2000)) // Simulate API call
     },
   })

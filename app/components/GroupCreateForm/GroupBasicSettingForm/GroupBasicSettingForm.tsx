@@ -5,7 +5,7 @@ import { InputText } from "../../shared/form/InpuText";
 import { withForm } from "~/hooks/useTanstackForm";
 import { groupCreateFormSchema } from "~/schema/groupCreateFormSchema";
 import { InputAddToList } from "../../shared/form/InputTextWithButton";
-import { GroupCreateFormDefaultValues } from "../GroupCreateForm";
+import { GroupCreateFormDefaultValues } from "../formValues";
 
 export const GroupBasicSettingForm = withForm({
   defaultValues: GroupCreateFormDefaultValues,
@@ -28,6 +28,7 @@ export const GroupBasicSettingForm = withForm({
                   {({ labelId, error, ariaDescribedBy }) => (
                     <InputText
                       id={labelId}
+                      name={field.name}
                       value={field.state.value}
                       aria-describedby={ariaDescribedBy}
                       placeholder="麻雀大会"
@@ -56,6 +57,7 @@ export const GroupBasicSettingForm = withForm({
                   {({ labelId, error, ariaDescribedBy }) => (
                     <InputAddToList
                       values={value}
+                      name={field.name}
                       size='medium'
                       placeholder="雀太郎"
                       error={!!errors?.length || error}

@@ -1,7 +1,17 @@
 @use "../../../../styles/mixins" as m;
 @use "../../../../styles/variables" as v;
 
-.input_radio_group {}
+.input_radio_group {
+  display: flex;
+
+  &-error {
+    color: v.$red-500;
+
+    .radio_button {
+      border-color: v.$red-500;
+    }
+  }
+}
 
 .input_radio_item {
   display: inline-flex;
@@ -44,6 +54,19 @@
     outline: 2px solid var(--color_input-outline);
     outline-offset: 2px;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+
+    &+.radio_button {
+      border-color: v.$gray-300;
+      pointer-events: none;
+
+      &::after {
+        opacity: 0.5;
+      }
+    }
+  }
 }
 
 .radio_button {
@@ -74,4 +97,9 @@
 .input_label {
   margin-inline-start: 8px;
   text-box: trim-both cap alphabetic;
+
+  &[data-disabled="true"] {
+    color: v.$gray-400;
+    cursor: not-allowed;
+  }
 }

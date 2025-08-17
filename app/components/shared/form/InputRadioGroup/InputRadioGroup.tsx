@@ -1,5 +1,6 @@
 import { useId, type AriaAttributes } from "react"
 import styles from "./InputRadioGroup.module.scss"
+import clsx from "clsx";
 
 type InputRadioGroupProps<
   Item extends Record<string, any>,
@@ -29,15 +30,20 @@ export function InputRadioGroup<
   labelKey,
   error,
   onChangeValue,
-  "aria-labelledby": ariaLabelledBy,
+  "aria-label": ariaLabel,
+  "aria-describedby": ariaDescribedBy,
 }: InputRadioGroupProps<Item, ValueKey>) {
   const radioGroupName = useId()
   return (
     <div
       role="radiogroup"
-      aria-labelledby={ariaLabelledBy}
+      aria-label={ariaLabel}
+      aria-describedby={ariaDescribedBy}
       aria-invalid={error}
-      className={styles.input_ragio_group}
+      className={clsx(
+        styles.input_radio_group,
+        error && styles['input_radio_group-error']
+      )}
     >
       {items.map((item) => {
         const itemId = `radio-item-${item[valueKey]}`
@@ -50,6 +56,7 @@ export function InputRadioGroup<
                 name={radioGroupName}
                 aria-invalid={error}
                 checked={value === item[valueKey]}
+                disabled={item.disabled}
                 value={item[valueKey]}
                 onChange={() => onChangeValue(item[valueKey])}
                 className={styles.input_radio}
@@ -59,6 +66,7 @@ export function InputRadioGroup<
             <label
               htmlFor={itemId}
               className={styles.input_label}
+              data-disabled={item.disabled ? "true" : undefined}
             >{item[labelKey]}</label>
           </span>
         )

@@ -7,6 +7,8 @@ import { Chip } from '../../Chip'
 type InputAddToListProp = {
   /** id */
   id?: string
+  /** name */
+  name?: string
   /** value */
   values: string[]
   /** 値変更時 */
@@ -31,6 +33,7 @@ type InputAddToListProp = {
 
 export function InputAddToList({
   id,
+  name,
   values,
   onChangeValues,
   onCheckValidValue,
@@ -88,6 +91,7 @@ export function InputAddToList({
       >
         <input
           id={id}
+          name={name}
           type="text"
           className={styles.input_text}
           placeholder={placeholder}
@@ -97,6 +101,7 @@ export function InputAddToList({
           onKeyDown={handleKeyDown}
           aria-invalid={error}
           aria-describedby={ariaDescribedBy}
+          enterKeyHint="done"
         />
         <button
           type="button"
