@@ -4,6 +4,7 @@ import { RankingPointFieldsDefaultValues } from "../GroupCreateForm/formValues";
 import { FormControl } from "../shared/form/FormControl/FormControl";
 import styles from "./FieldGroupRankingPointFields.module.scss"
 import { MahjongType } from "~/constants/mahjongType";
+import { PointSuffix } from "../shared/form/suffixParts/PointSuffix";
 
 export const FieldGroupRankingPointFields = withFieldGroup({
   defaultValues: RankingPointFieldsDefaultValues,
@@ -45,7 +46,7 @@ export const FieldGroupRankingPointFields = withFieldGroup({
                         value={field.state.value}
                         error={error}
                         onChangeValue={field.handleChange}
-                        suffix={<PointSuffix />}
+                        suffix={<PointSuffix label='pt' />}
                       />
                     )}
                   </FormControl>
@@ -58,6 +59,3 @@ export const FieldGroupRankingPointFields = withFieldGroup({
     )
   }
 })
-const PointSuffix = () => {
-  return <span className={styles.point}>pt</span>
-}

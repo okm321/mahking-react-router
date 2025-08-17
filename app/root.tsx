@@ -31,6 +31,33 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  // NOTE: 一旦使わないのでコメントアウト
+  // const [_, setKeyboardHeight] = useState(0);
+  //
+  // useEffect(() => {
+  //   if (!window.visualViewport) return;
+  //
+  //   const handleViewportChange = () => {
+  //     if (!window.visualViewport) return;
+  //     const keyboardHeight = window.innerHeight - window.visualViewport.height;
+  //     setKeyboardHeight(keyboardHeight);
+  //
+  //     // CSS変数として設定
+  //     document.documentElement.style.setProperty(
+  //       '--keyboard-height',
+  //       `${keyboardHeight}px`
+  //     );
+  //   };
+  //
+  //   window.visualViewport.addEventListener('resize', handleViewportChange);
+  //   window.visualViewport.addEventListener('scroll', handleViewportChange);
+  //
+  //   return () => {
+  //     if (!window.visualViewport) return;
+  //     window.visualViewport.removeEventListener('resize', handleViewportChange);
+  //     window.visualViewport.removeEventListener('scroll', handleViewportChange);
+  //   };
+  // }, []);
   return (
     <html lang="ja">
       <head>

@@ -8,6 +8,7 @@ import styles from "./GroupCreateForm.module.scss"
 import { GroupRuleForm } from "./GroupRuleForm";
 import { GroupCreateFormDefaultValues } from "./formValues";
 import { revalidateLogic } from "@tanstack/react-form";
+import { GroupRuleDetailForm } from "./GroupRuleDetailForm";
 
 export function GroupCreateForm() {
   const form = useAppForm({
@@ -37,6 +38,7 @@ export function GroupCreateForm() {
       <Stack spacing={8}>
         <GroupBasicSettingForm form={form} />
         <GroupRuleForm form={form} />
+        <GroupRuleDetailForm form={form} />
       </Stack>
       <form.Subscribe
         selector={(state) => [state.isSubmitting]}

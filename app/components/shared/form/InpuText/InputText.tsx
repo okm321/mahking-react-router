@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import styles from "./InputText.module.scss"
-import type { AriaAttributes } from "react"
+import type { AriaAttributes, FocusEvent } from "react"
 
 type InputTextProps = {
   /** id */
@@ -34,11 +34,22 @@ export function InputText({
   error,
   "aria-describedby": ariaDescribedBy
 }: InputTextProps) {
+  const handleInputFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
+    setTimeout(() => {
+      e.target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'nearest'
+      });
+    }, 300);
+  };
+
   return (
     <input
       id={id}
       name={name}
       value={value}
+      onFocus={handleInputFocus}
       onBlur={onBlur}
       onChange={(e) => onChangeValue(e.target.value)}
       disabled={disabled}

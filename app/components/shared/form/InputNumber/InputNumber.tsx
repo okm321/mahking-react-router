@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import type { AriaAttributes, ReactNode } from "react"
+import type { AriaAttributes, FocusEvent, ReactNode } from "react"
 import styles from "../InpuText/InputText.module.scss"
 import clsx from "clsx"
 
@@ -42,6 +42,16 @@ export function InputNumber({
   "aria-describedby": ariaDescribedBy
 }: InputNumberProps) {
   const [localValue, setLocalValue] = useState<string>('')
+
+  const handleInputFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
+    setTimeout(() => {
+      e.target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'nearest'
+      });
+    }, 300);
+  };
 
   useEffect(() => {
     setLocalValue(value === null ? '' : String(value))
@@ -91,6 +101,7 @@ export function InputNumber({
           handleBlur()
           onBlur?.(e)
         }}
+        onFocus={handleInputFocus}
         inputMode={inputMode}
         disabled={disabled}
         placeholder={placeholder}

@@ -12,6 +12,7 @@ import { InputNumber } from "~/components/shared/form/InputNumber";
 import styles from "./GroupRuleForm.module.scss";
 import { FieldGroupRankingPointFields } from "~/components/FieldGroupRankingPointFields";
 import { FieldGroupFractionalCalculationFields } from "~/components/FieldGroupFractionalCalculationFields/FieldGroupFractionalCalculationFields";
+import { PointSuffix } from "~/components/shared/form/suffixParts/PointSuffix";
 
 export const GroupRuleForm = withForm({
   defaultValues: GroupCreateFormDefaultValues,
@@ -82,7 +83,7 @@ export const GroupRuleForm = withForm({
                         name={field.name}
                         value={field.state.value}
                         error={error}
-                        suffix={<PointSuffix />}
+                        suffix={<PointSuffix label="000点" />}
                         onChangeValue={(value) => {
                           field.handleChange(value)
                         }}
@@ -109,7 +110,7 @@ export const GroupRuleForm = withForm({
                         name={field.name}
                         value={field.state.value}
                         error={error}
-                        suffix={<PointSuffix />}
+                        suffix={<PointSuffix label="000点" />}
                         onChangeValue={(value) => {
                           field.handleChange(value)
                         }}
@@ -160,8 +161,3 @@ export const GroupRuleForm = withForm({
     )
   }
 })
-
-const PointSuffix = () => {
-  return <span className={styles.point_suffix}>000点</span>
-}
-

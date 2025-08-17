@@ -27,11 +27,19 @@ export const FractionalCalculationFieldsDefaultValues: FractionalCalculationFiel
   remainderRecipient: RemainderRecipient.TOP
 }
 
-export type GroupCreateFormValues = {
+export type GroupSettingFormValues = {
   /** グループ名 */
   groupName: string
   /** メンバー名 */
   memberNames: string[]
+}
+
+export const GroupSettingFormDefaultValues: GroupSettingFormValues = {
+  groupName: '',
+  memberNames: []
+}
+
+export type GroupRuleFormValues = {
   /** 麻雀の種類 */
   mahjongType: MahjongType
   /** 持ち点 */
@@ -44,12 +52,38 @@ export type GroupCreateFormValues = {
   fractionalCalculation: FractionalCalculationFields
 }
 
-export const GroupCreateFormDefaultValues: GroupCreateFormValues = {
-  groupName: '',
-  memberNames: [],
+export const GroupRuleFormDefaultValues: GroupRuleFormValues = {
   mahjongType: MahjongType.THREE_PLAYER,
   initialPoints: 35,
   returnPoints: 50,
   rankingPoints: RankingPointFieldsDefaultValues,
   fractionalCalculation: FractionalCalculationFieldsDefaultValues
+}
+
+export type BustFields = {
+  /** 飛び */
+  useBust: boolean
+  /** 飛ばし賞 */
+  bustBonus: number
+}
+
+export const bustFieldsDefaultValues: BustFields = {
+  useBust: false,
+  bustBonus: 0
+}
+
+export type GroupDetailRuleFormValues = {
+  bustSetting: BustFields
+}
+
+export const GroupDetailRuleFormDefaultValues: GroupDetailRuleFormValues = {
+  bustSetting: bustFieldsDefaultValues
+}
+
+export type GroupCreateFormValues = GroupSettingFormValues & GroupRuleFormValues & GroupDetailRuleFormValues
+
+export const GroupCreateFormDefaultValues: GroupCreateFormValues = {
+  ...GroupSettingFormDefaultValues,
+  ...GroupRuleFormDefaultValues,
+  ...GroupDetailRuleFormDefaultValues
 }

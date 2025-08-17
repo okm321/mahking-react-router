@@ -37,8 +37,8 @@ export const RemainderRecipient = {
 export type RemainderRecipient = (typeof RemainderRecipient)[keyof typeof RemainderRecipient];
 
 export const REMAINDER_RECIPIENT_LABELS: Record<RemainderRecipient, string> = {
-  [RemainderRecipient.TOP]: "トップ",
-  [RemainderRecipient.LAST]: "ラス",
+  [RemainderRecipient.TOP]: "1位の人",
+  [RemainderRecipient.LAST]: "最下位の人",
 };
 
 export const REMAINDER_RECIPIENT_OPTIONS = Object.entries(RemainderRecipient).map(

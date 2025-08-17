@@ -60,3 +60,5 @@ body {
   flex-direction: column;
   height: 100dvh;
 }
+
+/* height: calc(100dvh - var(--keyboard-height, 0px)); */

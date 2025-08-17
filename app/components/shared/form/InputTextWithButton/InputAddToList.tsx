@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react'
 import clsx from 'clsx'
 import styles from './InputAddToList.module.scss'
-import type { AriaAttributes } from 'react'
+import type { AriaAttributes, FocusEvent } from 'react'
 import { Chip } from '../../Chip'
 
 type InputAddToListProp = {
@@ -50,6 +50,17 @@ export function InputAddToList({
 }: InputAddToListProp) {
   const [inputValue, setInputValue] = useState<string>('')
 
+  const handleInputFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
+    setTimeout(() => {
+      e.target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'nearest'
+      });
+    }, 300);
+  };
+
+
   const handleSubmit = () => {
     if (maxCount && values.length >= maxCount) {
       return
@@ -95,6 +106,7 @@ export function InputAddToList({
           id={id}
           name={name}
           type="text"
+          onFocus={handleInputFocus}
           className={styles.input_text}
           placeholder={placeholder}
           disabled={disabled}
