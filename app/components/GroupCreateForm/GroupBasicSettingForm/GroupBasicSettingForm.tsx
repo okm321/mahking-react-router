@@ -20,7 +20,7 @@ export const GroupBasicSettingForm = withForm({
   render: function Render({ form }) {
     return (
       <section>
-        <Heading as='h2'>基本設定</Heading>
+        <Heading as='h2'>グループ設定</Heading>
         <Stack spacing={8}>
           <form.Field
             name='groupName'

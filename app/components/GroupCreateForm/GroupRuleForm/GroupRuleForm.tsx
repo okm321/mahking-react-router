@@ -11,13 +11,11 @@ import { revalidateLogic, useStore } from "@tanstack/react-form";
 import { InputNumber } from "~/components/shared/form/InputNumber";
 import styles from "./GroupRuleForm.module.scss";
 import { FieldGroupRankingPointFields } from "~/components/FieldGroupRankingPointFields";
+import { FieldGroupFractionalCalculationFields } from "~/components/FieldGroupFractionalCalculationFields/FieldGroupFractionalCalculationFields";
 
 export const GroupRuleForm = withForm({
   defaultValues: GroupCreateFormDefaultValues,
   validators: {
-    // onSubmit: groupCreateFormSchema,
-    // onChangeAsync: groupCreateFormSchema,
-    // onChangeAsyncDebounceMs: 500,
     onDynamic: groupCreateFormSchema,
   },
   validationLogic: revalidateLogic({
@@ -48,6 +46,7 @@ export const GroupRuleForm = withForm({
                 >
                   {({ labelId, error, ariaDescribedBy }) => (
                     <InputRadioGroup
+                      name="mahjongType"
                       aria-label="打ち方"
                       items={createMahjongTypeOptions(overFourPlayers)}
                       valueKey='value'
@@ -127,12 +126,30 @@ export const GroupRuleForm = withForm({
               const { meta: { errors } } = field.state;
               return (
                 <FormControl
-                  label="ウマの設定"
+                  label="ウマ"
                   required
                   errorMessage={errors[0]?.message}
                 >
-                  {({ labelId, error }) => (
+                  {() => (
                     <FieldGroupRankingPointFields form={form} fields="rankingPoints" mahjongType={mahjongType} />
+                  )}
+                </FormControl>
+              )
+            }}
+          />
+          <form.Field
+            name="fractionalCalculation"
+            children={(field) => {
+              const { meta: { errors } } = field.state;
+              return (
+                <FormControl
+                  label="端数計算の方法"
+                  required
+                  helperText="小数点有効以外を選択する場合は、端数を受け取る人を選択してください。"
+                  errorMessage={errors[0]?.message}
+                >
+                  {({ labelId, error }) => (
+                    <FieldGroupFractionalCalculationFields form={form} fields="fractionalCalculation" />
                   )}
                 </FormControl>
               )

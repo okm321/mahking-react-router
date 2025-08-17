@@ -1,4 +1,5 @@
 import z from "zod";
+import { FractionalCalculation, RemainderRecipient } from "~/constants/fractionalCalculation";
 import { MahjongType } from "~/constants/mahjongType";
 
 const pointsSchema = z.number({
@@ -45,6 +46,10 @@ export const groupCreateFormSchema = z.object({
     second: rankingPointSchema,
     third: rankingPointSchema,
     fourth: z.number().int().nullable()
+  }),
+  fractionalCalculation: z.object({
+    type: z.enum(FractionalCalculation),
+    remainderRecipient: z.enum(RemainderRecipient)
   })
 }).refine((data) => {
   if (data.memberNames.length < 4 && data.mahjongType === MahjongType.FOUR_PLAYER) {
@@ -89,7 +94,7 @@ export const groupCreateFormSchema = z.object({
     }
     return true
   }, {
-    message: "ウマの合計は0にしてください",
+    message: "ウマの合計は0になるようにしてください",
     path: ["rankingPoints"],
   })
 

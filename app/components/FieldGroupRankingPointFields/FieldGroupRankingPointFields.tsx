@@ -1,20 +1,9 @@
-import { Stack } from "../shared/Stack";
 import { InputNumber } from "../shared/form/InputNumber";
 import { withFieldGroup } from "~/hooks/useTanstackForm";
 import { RankingPointFieldsDefaultValues } from "../GroupCreateForm/formValues";
 import { FormControl } from "../shared/form/FormControl/FormControl";
 import styles from "./FieldGroupRankingPointFields.module.scss"
 import { MahjongType } from "~/constants/mahjongType";
-
-const fieldInfos: {
-  name: keyof typeof RankingPointFieldsDefaultValues;
-  label: string;
-}[] = [
-    { name: "first", label: "1位" },
-    { name: "second", label: "2位" },
-    { name: "third", label: "3位" },
-    { name: "fourth", label: "4位" },
-  ]
 
 export const FieldGroupRankingPointFields = withFieldGroup({
   defaultValues: RankingPointFieldsDefaultValues,
@@ -35,7 +24,7 @@ export const FieldGroupRankingPointFields = withFieldGroup({
       fieldInfos.push({ name: "fourth", label: "4位" });
     }
     return (
-      <div role="group" aria-label="ウマの設定" className={styles.ranking_points}>
+      <div role="group" aria-label="ウマ" className={styles.ranking_points}>
         {fieldInfos.map((fieldInfo) => {
           return (
             <group.Field

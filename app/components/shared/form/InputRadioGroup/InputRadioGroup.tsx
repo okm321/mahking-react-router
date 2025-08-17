@@ -8,6 +8,8 @@ type InputRadioGroupProps<
 > = {
   /** value */
   value: Item[ValueKey];
+  /** name */
+  name: string;
   /** 項目 */
   items: Item[];
   /** valueのキー */
@@ -25,6 +27,7 @@ export function InputRadioGroup<
   ValueKey extends keyof Item
 >({
   value,
+  name,
   items,
   valueKey,
   labelKey,
@@ -33,7 +36,6 @@ export function InputRadioGroup<
   "aria-label": ariaLabel,
   "aria-describedby": ariaDescribedBy,
 }: InputRadioGroupProps<Item, ValueKey>) {
-  const radioGroupName = useId()
   return (
     <div
       role="radiogroup"
@@ -46,14 +48,14 @@ export function InputRadioGroup<
       )}
     >
       {items.map((item) => {
-        const itemId = `radio-item-${item[valueKey]}`
+        const itemId = `radio-item-${name}-${item[valueKey]}`
         return (
           <span key={itemId} className={styles.input_radio_item}>
             <span className={styles.input_radio_wrapper}>
               <input
                 id={itemId}
                 type='radio'
-                name={radioGroupName}
+                name={name}
                 aria-invalid={error}
                 checked={value === item[valueKey]}
                 disabled={item.disabled}

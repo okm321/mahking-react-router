@@ -1,3 +1,4 @@
+import { FractionalCalculation, RemainderRecipient } from "~/constants/fractionalCalculation"
 import { MahjongType } from "~/constants/mahjongType"
 
 export type RankingPointFields = {
@@ -14,6 +15,18 @@ export const RankingPointFieldsDefaultValues: RankingPointFields = {
   fourth: -20
 }
 
+export type FractionalCalculationFields = {
+  /** 端数の計算方法 */
+  type: FractionalCalculation
+  /** 差分ポイントの受け取り */
+  remainderRecipient: RemainderRecipient
+}
+
+export const FractionalCalculationFieldsDefaultValues: FractionalCalculationFields = {
+  type: FractionalCalculation.DECIMAL,
+  remainderRecipient: RemainderRecipient.TOP
+}
+
 export type GroupCreateFormValues = {
   /** グループ名 */
   groupName: string
@@ -27,6 +40,8 @@ export type GroupCreateFormValues = {
   returnPoints: number | null
   /** ウマ */
   rankingPoints: RankingPointFields
+  /** 端数計算 */
+  fractionalCalculation: FractionalCalculationFields
 }
 
 export const GroupCreateFormDefaultValues: GroupCreateFormValues = {
@@ -35,5 +50,6 @@ export const GroupCreateFormDefaultValues: GroupCreateFormValues = {
   mahjongType: MahjongType.THREE_PLAYER,
   initialPoints: 35,
   returnPoints: 50,
-  rankingPoints: RankingPointFieldsDefaultValues
+  rankingPoints: RankingPointFieldsDefaultValues,
+  fractionalCalculation: FractionalCalculationFieldsDefaultValues
 }
