@@ -6,6 +6,7 @@ import { groupCreateFormSchema } from "~/schema/groupCreateFormSchema";
 import { revalidateLogic } from "@tanstack/react-form";
 import { FormControl } from "~/components/shared/form/FormControl/FormControl";
 import { FieldGroupBustFields } from "~/components/FieldGroupBustFields/FieldGroupBustFields";
+import { FieldGroupChipFields } from "~/components/FieldGroupChipFields/FieldGroupChipFields";
 
 export const GroupRuleDetailForm = withForm({
   defaultValues: GroupCreateFormDefaultValues,
@@ -31,6 +32,21 @@ export const GroupRuleDetailForm = withForm({
                 >
                   {({ labelId, error }) => (
                     <FieldGroupBustFields form={form} fields="bustSetting" />
+                  )}
+                </FormControl>
+              )
+            }}
+          />
+          <form.Field
+            name="chipSetting"
+            children={(field) => {
+              return (
+                <FormControl
+                  label="チップ設定"
+                  required
+                >
+                  {({ }) => (
+                    <FieldGroupChipFields form={form} fields="chipSetting" />
                   )}
                 </FormControl>
               )

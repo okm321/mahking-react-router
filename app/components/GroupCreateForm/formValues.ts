@@ -27,6 +27,18 @@ export const FractionalCalculationFieldsDefaultValues: FractionalCalculationFiel
   remainderRecipient: RemainderRecipient.TOP
 }
 
+export type ChipFields = {
+  /** チップ */
+  useChip: boolean
+  /** チップのポイント */
+  chipPoint: number | null
+}
+
+export const chipFieldsDefaultValues: ChipFields = {
+  useChip: false,
+  chipPoint: 0
+}
+
 export type GroupSettingFormValues = {
   /** グループ名 */
   groupName: string
@@ -73,11 +85,13 @@ export const bustFieldsDefaultValues: BustFields = {
 }
 
 export type GroupDetailRuleFormValues = {
-  bustSetting: BustFields
+  bustSetting: BustFields,
+  chipSetting: ChipFields
 }
 
 export const GroupDetailRuleFormDefaultValues: GroupDetailRuleFormValues = {
-  bustSetting: bustFieldsDefaultValues
+  bustSetting: bustFieldsDefaultValues,
+  chipSetting: chipFieldsDefaultValues
 }
 
 export type GroupCreateFormValues = GroupSettingFormValues & GroupRuleFormValues & GroupDetailRuleFormValues
@@ -85,5 +99,5 @@ export type GroupCreateFormValues = GroupSettingFormValues & GroupRuleFormValues
 export const GroupCreateFormDefaultValues: GroupCreateFormValues = {
   ...GroupSettingFormDefaultValues,
   ...GroupRuleFormDefaultValues,
-  ...GroupDetailRuleFormDefaultValues
+  ...GroupDetailRuleFormDefaultValues,
 }

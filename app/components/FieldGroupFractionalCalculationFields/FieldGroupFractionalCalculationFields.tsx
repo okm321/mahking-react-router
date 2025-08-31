@@ -4,13 +4,14 @@ import { InputRadioGroup } from "../shared/form/InputRadioGroup";
 import { FRACTIONAL_CALCULATION_OPTIONS, FractionalCalculation, REMAINDER_RECIPIENT_OPTIONS } from "~/constants/fractionalCalculation";
 import { useStore } from "@tanstack/react-form";
 import { FormControl } from "../shared/form/FormControl/FormControl";
+import styles from "./FieldGroupFractionalCalculationFields.module.scss";
 
 export const FieldGroupFractionalCalculationFields = withFieldGroup({
   defaultValues: FractionalCalculationFieldsDefaultValues,
   render: function Render({ group }) {
     const type = useStore(group.store, (state) => state.values.type)
     return (
-      <>
+      <div role="group" aria-label="端数計算の方法" className={styles.fractional_calculation}>
         <group.Field
           name="type"
           children={(field) => {
@@ -34,7 +35,7 @@ export const FieldGroupFractionalCalculationFields = withFieldGroup({
             label="端数を受け取る人"
             hiddenRequiredLabel
           >
-            {({ }) => {
+            {() => {
               return (
                 <group.Field
                   name="remainderRecipient"
@@ -58,7 +59,7 @@ export const FieldGroupFractionalCalculationFields = withFieldGroup({
             }}
           </FormControl>
         )}
-      </>
+      </div>
     )
   }
 })
